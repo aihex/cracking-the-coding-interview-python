@@ -1,4 +1,4 @@
-class Linkedlist:
+class LinkedList:
   def __init__(self, val = 0):
     self.val = val
     self.next = None
