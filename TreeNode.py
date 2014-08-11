@@ -17,3 +17,9 @@ class TreeNode:
         print self.val,
         if self.right:
             self.right.preorder_print()
+
+    def __str__(self):
+        return str(self.val)
+
+    def __repr__(self):
+        return str(self.val)

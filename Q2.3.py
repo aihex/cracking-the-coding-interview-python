@@ -19,4 +19,4 @@ if __name__ == '__main__':
 
     remove(n3)
 
-    n1.selfprint()
+    n1.print_self()

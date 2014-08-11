@@ -23,4 +23,4 @@ if __name__ == '__main__':
   dummy = LinkedList(0)
   dummy.next = n1
   removedulicate(dummy)
-  dummy.selfprint()
+  dummy.print_self()
