@@ -17,6 +17,22 @@ def find_successor(node):
             return None
         return tmp.parent.val
 
+def find_predecessor(node):
+    if not node:
+        return None
+    if node.left:
+        tmp = node.left
+        while tmp.right:
+            tmp = tmp.right
+        return tmp.val
+    else:
+        tmp = node
+        while tmp.parent and tmp == tmp.parent.left:
+            tmp = tmp.parent
+        if not tmp.parent:
+            return None
+        return tmp.parent.val
+
 if __name__ == '__main__':
     # print find_successor(None)
     n1 = TreeNode(8)
@@ -46,3 +62,13 @@ if __name__ == '__main__':
     print find_successor(n5)
     print find_successor(n6)
     print find_successor(n7)
+
+    print
+    
+    print find_predecessor(n1)
+    print find_predecessor(n2)
+    print find_predecessor(n3)
+    print find_predecessor(n4)
+    print find_predecessor(n5)
+    print find_predecessor(n6)
+    print find_predecessor(n7)
