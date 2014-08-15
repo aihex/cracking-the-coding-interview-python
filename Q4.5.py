@@ -17,6 +17,7 @@ def find_successor(node):
             return None
         return tmp.parent.val
 
+
 def find_predecessor(node):
     if not node:
         return None
@@ -64,7 +65,7 @@ if __name__ == '__main__':
     print find_successor(n7)
 
     print
-    
+
     print find_predecessor(n1)
     print find_predecessor(n2)
     print find_predecessor(n3)

@@ -1,6 +1,7 @@
 import random
 from BSTreeNode import BSTreeNode
 
+
 def common_ancestor_1(root, n1, n2, res):
     ''' start from root and all the way down to leaf
         check if a node is a common ancestor of n1 and n2'''
@@ -10,6 +11,7 @@ def common_ancestor_1(root, n1, n2, res):
         res[0] = root
         common_ancestor_1(root.left, n1, n2, res)
         common_ancestor_1(root.right, n1, n2, res)
+
 
 def is_offspring(root, n1):
     if not root:
@@ -32,6 +34,7 @@ def common_ancestor_2(root, n1, n2):
         else:
             i += 1
     return path1[i-1]
+
 
 def find_path(root, n1, res):
     if not root:
