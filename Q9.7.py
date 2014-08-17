@@ -9,6 +9,7 @@ def tower(lst):
     max_dp = max(dp)
     return max_dp
 
+
 def lis_stack(lst):
     lst = sorted(lst)
     print lst
@@ -18,7 +19,7 @@ def lis_stack(lst):
             stack.append(tup[-1])
         else:
             low = 0
-            high = len(stack) -1
+            high = len(stack) - 1
             while low > high:
                 mid = (low + high) >> 1
                 if stack[mid] == tup[1]:
