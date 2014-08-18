@@ -28,16 +28,20 @@ def merge_sort(array, start, end):
         i = start
         j = mid + 1
         tmp_array = []
+        count = 0
         while i <= mid and j <= end:
             if array[i][1] < array[j][1]:  # the earlier starting one ends eailier
+                array[i][3] += count
                 tmp_array.append(array[i])
                 i += 1
             else:
-                array[i][3] += 1
+                # array[i][3] += 1
+                count += 1
                 tmp_array.append(array[j])  # the earlier starting one ends later
                 j += 1
         while i <= mid:
-            array[i][3] += 1
+            # array[i][3] += 1
+            array[i][3] += count
             tmp_array.append(array[i])  # all left ealier starting ones should +1
             i += 1
         while j <= end:
@@ -47,5 +51,5 @@ def merge_sort(array, start, end):
 
 
 if __name__ == '__main__':
-    res = rank_racer('rank.txt')
+    res = rank_racer('input004.txt')
     print '\n'.join(' '.join(str(item) for item in array) for array in res)
