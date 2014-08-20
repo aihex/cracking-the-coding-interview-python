@@ -1,3 +1,6 @@
+import random
+
+
 class TreeNode:
     def __init__(self, val=0):
         self.val = val
@@ -37,8 +40,30 @@ class TreeNode:
         if self.right:
             self.right.preorder_print(),
 
+    def clone(self):
+        root = TreeNode(self.val)
+        if self.left:
+            root.left = self.left.clone()
+        if self.right:
+            root.right = self.right.clone()
+        return root
+
     def __str__(self):
         return str(self.val)
 
     def __repr__(self):
         return str(self.val)
+
+if __name__ == '__main__':
+    array = [random.randint(0, 10000) for i in xrange(100)]
+    # array = [1, 1, 42]
+    print array
+    root1 = TreeNode.create_from_array(array)
+    root1.inorder_print()
+    print '-----',
+    root1.preorder_print()
+    print
+    root2 = root1.clone()
+    root2.inorder_print()
+    print '-----',
+    root2.preorder_print()

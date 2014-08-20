@@ -9,19 +9,19 @@ class BSTreeNode(TreeNode):
             array = sorted(array)
         return BSTreeNode.create_from_array_rec(array, 0, len(array)-1)
 
-    @staticmethod
-    def create_from_array_rec(array, start, end):
-        if start > end:
-            return None
-        mid = (start + end) >> 1
-        node = BSTreeNode(array[mid])
-        node.left = BSTreeNode.create_from_array_rec(array, start, mid-1)
-        node.right = BSTreeNode.create_from_array_rec(array, mid+1, end)
-        if node.left:
-            node.left.parent = node
-        if node.right:
-            node.right.parent = node
-        return node
+    # @staticmethod
+    # def create_from_array_rec(array, start, end):
+    #     if start > end:
+    #         return None
+    #     mid = (start + end) >> 1
+    #     node = BSTreeNode(array[mid])
+    #     node.left = BSTreeNode.create_from_array_rec(array, start, mid-1)
+    #     node.right = BSTreeNode.create_from_array_rec(array, mid+1, end)
+    #     if node.left:
+    #         node.left.parent = node
+    #     if node.right:
+    #         node.right.parent = node
+    #     return node
 
     def insert(self, val):
         if val < self.val:
