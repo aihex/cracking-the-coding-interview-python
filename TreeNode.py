@@ -40,6 +40,13 @@ class TreeNode:
         if self.right:
             self.right.preorder_print(),
 
+    def postorder_print(self):
+        if self.left:
+            self.left.postorder_print()
+        if self.right:
+            self.right.postorder_print()
+        print self.val
+
     def clone(self):
         root = TreeNode(self.val)
         if self.left:

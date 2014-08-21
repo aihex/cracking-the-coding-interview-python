@@ -2,7 +2,7 @@ import sys
 
 
 class BitMap():
-    int_size = 8*sys.getsizeof(0)
+    int_size = 8 * sys.getsizeof(0)
 
     def __init__(self, size=0):
         self.array = [0 for i in xrange(size / BitMap.int_size + 1)]
