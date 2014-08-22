@@ -42,7 +42,7 @@ class BSTreeNode(TreeNode):
     def delete(self, val):
         node = self.find(val)
         if not node:
-            return None
+            return self
         if node.left and node.right:
             tmp = node.right
             while tmp.left:
