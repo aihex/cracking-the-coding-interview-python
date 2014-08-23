@@ -233,6 +233,10 @@ class TreeNode:
         else:
             return True
 
+
+    def find_path(self, p):
+        pass
+
     def clone(self):
         root = TreeNode(self.val)
         if self.left:
