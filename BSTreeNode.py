@@ -39,36 +39,79 @@ class BSTreeNode(TreeNode):
                 if self.right:
                     self.right.parent = self
 
+    # def delete(self, val):
+    #     node = self.find(val)
+    #     if not node:
+    #         return self
+    #     if node.left and node.right:
+    #         tmp = node.right
+    #         while tmp.left:
+    #             tmp = tmp.left
+    #         node.val = tmp.val
+    #         return tmp.replace(self, tmp.right)
+    #     elif node.left:
+    #         return node.replace(self, node.left)
+    #     elif node.right:
+    #         return node.replace(self, node.right)
+    #     else:
+    #         return node.replace(self)
+    #
+    # def replace(self, root, node=None):
+    #     if self == root:
+    #         if node:
+    #             node.parent = None
+    #         return node
+    #     else:
+    #         if self.parent.left == self:
+    #             self.parent.left = node
+    #         else:
+    #             self.parent.right = node
+    #         if node:
+    #             node.parent = self.parent
+    #         return root
+
     def delete(self, val):
         node = self.find(val)
         if not node:
             return self
-        if node.left and node.right:
-            tmp = node.right
-            while tmp.left:
-                tmp = tmp.left
-            node.val = tmp.val
-            return tmp.replace(self, tmp.right)
-        elif node.left:
-            return node.replace(self, node.left)
-        elif node.right:
-            return node.replace(self, node.right)
-        else:
-            return node.replace(self)
-
-    def replace(self, root, node=None):
-        if self == root:
-            if node:
-                node.parent = None
-            return node
-        else:
-            if self.parent.left == self:
-                self.parent.left = node
+        if node.left:
+            cur = node.left
+            while cur.right:
+                cur = cur.right
+            node.val = cur.val
+            if cur.parent.left == cur:
+                cur.parent.left = cur.left
+                if cur.left:
+                    cur.left.parent = cur.parent
             else:
-                self.parent.right = node
-            if node:
-                node.parent = self.parent
-            return root
+                cur.parent.right = cur.left
+                if cur.left:
+                    cur.left.parent = cur.parent
+            cur.parent = None
+            return self
+        elif node.right:
+            cur = node.right
+            while cur.left:
+                cur = cur.left
+            node.val = cur.val
+            if cur.parent.left == cur:
+                cur.parent.left = cur.right
+                if cur.right:
+                    cur.right.parent = cur.parent
+            else:
+                cur.parent.right = cur.right
+                if cur.right:
+                    cur.right.parent = cur.parent
+            cur.parent = None
+            return self
+        else:
+            if node.parent:
+                if node.parent.left == node:
+                    node.parent.left = None
+                else:
+                    node.parent.right = None
+                node.parent = None
+                return self
 
     def find(self, val):
         if self.val == val:
