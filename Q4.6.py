@@ -1,4 +1,5 @@
 import random
+import BSTreeNode
 from BSTreeNode import BSTreeNode
 
 
@@ -21,12 +22,12 @@ def is_offspring(root, n1):
 
 
 def common_ancestor_2(root, n1, n2):
-    path1 = []
-    path2 = []
-    find_path(root, n1, path1)
-    find_path(root, n2, path2)
-    # print path1
-    # print path2
+    path1, path2 = [], []
+    find_path(root, n1, path1, [])
+    find_path(root, n2, path2, [])
+    path1, path2 = path1[0], path2[0]
+    print path1
+    print path2
     i = 0
     while i < len(path1) and i < len(path2):
         if path1[i] != path2[i]:
@@ -35,21 +36,30 @@ def common_ancestor_2(root, n1, n2):
             i += 1
     return path1[i-1]
 
+#
+# def find_path(root, n1, res):
+#     if not root:
+#         return False
+#     if root == n1:
+#         res.append(root)
+#         return True
+#     res.append(root)
+#     found = find_path(root.left, n1, res)
+#     if not found:
+#         found = find_path(root.right, n1, res)
+#     if not found:
+#         res.pop()
+#         return False
+#     return True
 
-def find_path(root, n1, res):
+
+def find_path(root, target, res, path):
     if not root:
-        return False
-    if root == n1:
-        res.append(root)
-        return True
-    res.append(root)
-    found = find_path(root.left, n1, res)
-    if not found:
-        found = find_path(root.right, n1, res)
-    if not found:
-        res.pop()
-        return False
-    return True
+        return
+    if root == target:
+        res.append(path + [target])
+    find_path(root.left, target, res, path + [root])
+    find_path(root.right, target, res, path + [root])
 
 
 if __name__ == '__main__':
@@ -58,6 +68,7 @@ if __name__ == '__main__':
     print array
     root = BSTreeNode.create_from_array(array)
     print root.preorder_print()
+    print isinstance(root, BSTreeNode)
     n1 = root.find(8)
     n2 = root.find(5)
     res = [0]
