@@ -32,14 +32,14 @@ class LinkedList:
             return None
 
     def reverse_rec(self):
-        if self.next:
+        if not self.next:
+            return self
+        else:
             p = self.next
             self.next = None
-            head = p.reverse()
+            head = p.reverse_rec()
             p.next = self
             return head
-        else:
-            return self
 
     def reverse_itr(self):
         dummy = LinkedList()
