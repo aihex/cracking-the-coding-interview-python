@@ -1,17 +1,15 @@
 from TreeNode import TreeNode
 
 
-def sum_path(root, sum, res, array):
-    if root.val == sum:
-        res.append(list(array + [root.val]))
+def sum_path(root, leftover, res, arr):
+    if root.val == leftover:
+        res.append(list(arr + [root.val]))
     if root.left:
-        sum_path(root.left, sum - root.val, res, array + [root.val])
-        if not array:
-            sum_path(root.left, sum, res, array)
+        sum_path(root.left, leftover - root.val, res, arr + [root.val])
+        sum_path(root.left, leftover, res, [])
     if root.right:
-        sum_path(root.right, sum - root.val, res, array + [root.val])
-        if not array:
-            sum_path(root.right, sum, res, array)
+        sum_path(root.right, leftover - root.val, res, arr + [root.val])
+        sum_path(root.right, leftover, res, [])
 
 if __name__ == '__main__':
     # import pdb
