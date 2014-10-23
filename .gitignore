@@ -1,2 +1,5 @@
 *.txt
 *.pyc
+CTCI/.idea/*
+*.iml
+*.class
